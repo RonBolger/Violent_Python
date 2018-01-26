@@ -1,3 +1,6 @@
+#This script searches the Windows Registry for Wireless Networks that have been connected to, displays
+#the SSID of the Network, and lastly displays the MAC address of interface
+
 from _winreg import *
 
 def val2addr(val):
