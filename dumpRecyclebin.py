@@ -1,5 +1,5 @@
+#This script will search the recycle bin of a windows machine and display what is currently in it.
 import os
-import optparse
 from _winreg import *
 
 def sid2user(sid):
@@ -14,7 +14,7 @@ def sid2user(sid):
         return sid
 
 def returnDir():
-    dirs=['C:\\Recycler\\','C:\\Recycled\\','C:\\$Recycle.Bin\\']
+    dirs=['C:\\Recycler\\','C:\\Recycled\\','C:\\$Recycle.Bin\\'] #recycle bin is handled differently based on windows version.
     for recycleDir in dirs:
         if os.path.isdir(recycleDir):
             return recycleDir
@@ -23,7 +23,7 @@ def returnDir():
 def findRecycled(recycleDir):
     dirList = os.listdir(recycleDir)
     for sid in dirList:
-        files = os.listdir(recycleDir + sid)
+        files = os.listdir(recycleDir + sid) #will not always return readable file name, but could be a reference to the file.
         user = sid2user(sid)
         print '\n[*] Listing files for user: ' + str(user)
         for file in files:
